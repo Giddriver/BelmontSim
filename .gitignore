@@ -1,0 +1,45 @@
+# Ignore build and output directories
+/build/
+/bin/
+/obj/
+/Debug/
+/Release/
+
+# Ignore Visual Studio files and folders
+.vs/
+.vscode/
+.idea/
+
+# Ignore generated files from Visual Studio
+.vs2019/
+/.vs2017/
+/.vs2015/
+/.vs2013/
+
+# Ignore temporary files
+*.tmp
+*.log
+
+# Ignore compiled object files and executables
+*.o
+*.obj
+*.exe
+*.out
+*.app
+
+# Ignore compiled library files
+*.lib
+*.a
+*.dll
+*.dylib
+*.so
+
+# Ignore backup and temporary files
+*~ 
+*.bak
+
+# Ignore user-specific files
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
