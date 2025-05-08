@@ -19,6 +19,12 @@ public:
         return nullptr;
     }
 
+	TerrainType getTerrainAt(const Coordinate& coord) const {
+		const Node* node = getNode(coord);
+		if (node) return node->terrain;
+		return TerrainType::Empty; // Default to empty if not found
+	}
+
     void displayMapArea(int minY, int maxY, int minX, int maxX, const Coordinate& playerPos) const;
 };
 

@@ -36,13 +36,16 @@
     <ClCompile Include="NPCGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="WorldMap.h">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerMovement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="WorldGen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldMap.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameplayUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -74,10 +77,13 @@
     <ClInclude Include="Node.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="WorldMap.cpp">
+    <ClInclude Include="WorldGen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="WorldGen.h">
+    <ClInclude Include="WorldMap.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameplayUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="encounters.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="GameplayUtils.cpp" />
     <ClCompile Include="NPCGenerator.cpp" />
     <ClCompile Include="Library.cpp" />
     <ClCompile Include="main.cpp" />
@@ -28,7 +29,10 @@
     <ClCompile Include="player.cpp" />
     <ClCompile Include="PlayerMovement.cpp" />
     <ClCompile Include="WorldGen.cpp" />
-    <ClCompile Include="WorldMap.h" />
+    <ClInclude Include="GameplayUtils.h" />
+    <ClInclude Include="WorldMap.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Coordinate.h" />
@@ -41,7 +45,9 @@
     <ClInclude Include="NPCLogic.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="WorldGen.h" />
-    <ClInclude Include="WorldMap.cpp" />
+    <ClCompile Include="WorldMap.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Vampire_Hunter_Game_Plan.md" />

@@ -7,6 +7,7 @@
 #include "WorldMap.h"
 #include "player.h"
 #include "WorldGen.h"
+#include "GameplayUtils.h"
 
 std::string terrainTypeToString(TerrainType type) {
     switch (type) {
@@ -28,6 +29,7 @@ void gameLoop(Player& player, WorldMap& world) {
     // Define a sample vampire and NPC
     VampireKnowledge vampire = { "Count Dracula", "Transylvania", "Humans", 500, {"Can turn into a bat", "Strength of 10 men"}, {}, {} };
     NPC npc = findNPC("Forest");
+    TerrainType currentTerrain = world.getTerrainAt(player.position);
 
     while (running) {
         std::cout << "\nWhat would you like to do?\n";
@@ -37,10 +39,22 @@ void gameLoop(Player& player, WorldMap& world) {
 
         switch (choice) {
         case '1':
-            gatherSpecificKnowledge(player, vampire, npc);
+            if (canTalkToPeople(currentTerrain)) {
+                std::cout << "You talk to a local...\n";
+                gatherSpecificKnowledge(player, vampire, npc);
+            }
+            else {
+                std::cout << "There is no one to talk to here.\n";
+            }
             break;
         case '2':
-            searchLibrary(player);
+            if (canSearchLibrary(currentTerrain)) {
+                std::cout << "You search the library for ancient vampire lore.\n";
+                searchLibrary(player);
+            }
+            else {
+                std::cout << "There is no library here to search.\n";
+            }
             break;
         case '3':
             // You could expand this to encounter more NPCs or events
@@ -72,6 +86,7 @@ void gameLoop(Player& player, WorldMap& world) {
             else {
                 std::cout << "You can’t go that way — unexplored terrain.\n";
             }
+            currentTerrain = world.getTerrainAt(player.position);
             break;
         }
         case '5': {
@@ -87,4 +102,21 @@ void gameLoop(Player& player, WorldMap& world) {
             std::cout << "Invalid option.\n";
         }
     }
+}
+
+void showAvailableActions(const WorldMap& world, const Coordinate& playerPos) {
+    TerrainType terrain = world.getTerrainAt(playerPos);
+
+    std::cout << "\nAvailable actions:\n";
+    std::cout << "1. Move\n";
+
+    if (canTalkToPeople(terrain)) {
+        std::cout << "2. Talk to locals\n";
+    }
+
+    if (canSearchLibrary(terrain)) {
+        std::cout << "3. Search the library\n";
+    }
+
+    std::cout << "0. Exit\n";
 }

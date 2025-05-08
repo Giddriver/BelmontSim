@@ -37,14 +37,28 @@ void placeCastle(WorldMap& map, const Coordinate& location, const std::string& n
 void placeRoad(WorldMap& map, const Coordinate& from, const Coordinate& to) {
     int y = from.y;
     int x = from.x;
+
     while (y != to.y || x != to.x) {
-        map.addNode({ y, x }, TerrainType::Road, "Road");
+        Coordinate coord = { y, x };
+        const Node* existing = map.getNode(coord);
+
+        // Only place a road if the tile is empty or forest
+        if (!existing || existing->terrain == TerrainType::Forest) {
+            map.addNode(coord, TerrainType::Road, "Road");
+        }
+
         if (x < to.x) ++x;
         else if (x > to.x) --x;
         else if (y < to.y) ++y;
         else if (y > to.y) --y;
     }
-    map.addNode(to, TerrainType::Road, "Road");
+
+    // Do the same for the destination
+    Coordinate dest = to;
+    const Node* existing = map.getNode(dest);
+    if (!existing || existing->terrain == TerrainType::Forest) {
+        map.addNode(dest, TerrainType::Road, "Road");
+    }
 }
 
 void setupWorld(WorldMap& map) {
